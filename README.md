@@ -1,8 +1,8 @@
 readme
 -----------------
-用来测试下单接口
+下单go.SDK
 
 
 备注
 -----------------
-1. api官网: https://doc.sailpayment.com/web/#/p/1e4aece247e174ef4e13eb739931c6c8
+1. api说明: https://www.showdoc.com.cn/2378425509159390/10583423810388045
