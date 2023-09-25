@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/fatih/structs"
 	"github.com/parnurzeal/gorequest"
+	"github.com/samber/lo"
 	"golang.org/x/exp/maps"
 	"time"
 )
@@ -18,6 +19,20 @@ func (client *ManuPayClient) PlaceUnifiedOrder(request UnifiedOrderRequest) (boo
 	var urlResp UnifiedOrderResponse
 
 	url := fmt.Sprintf("%s%s", client.Host, UNIFIEDORDER_PATH)
+
+	//----------------校验额外参数(必须有如下九个字段)-------------------------
+	legalParams := []string{"firstname", "lastname", "city", "address", "phone", "email", "country", "state", "postcode"}
+
+	var res map[string]string
+	err := json.Unmarshal([]byte(request.ExtParam), &res)
+	if err != nil || len(res) < len(legalParams) {
+		return false, UnifiedOrderResponse{}
+	}
+	var subset []string = lo.Without(legalParams, GetKeys(res)...)
+	if len(subset) > 0 {
+		return false, UnifiedOrderResponse{}
+	}
+	//--------------------------------------------------------------------
 
 	//计算Body
 	signForm := client.CalculateSign(request)
@@ -80,4 +95,15 @@ func (client *ManuPayClient) CalculateSign(request UnifiedOrderRequest) SignForm
 	//-----------------------------------------------------------
 
 	return result2
+}
+
+func GetKeys(m map[string]string) []string {
+	// 数组默认长度为map长度,后面append时,不需要重新申请内存和拷贝,效率很高
+	j := 0
+	keys := make([]string, len(m))
+	for k := range m {
+		keys[j] = k
+		j++
+	}
+	return keys
 }

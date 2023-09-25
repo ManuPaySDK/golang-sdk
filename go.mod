@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/fatih/structs v1.1.0
 	github.com/parnurzeal/gorequest v0.2.16
+	github.com/samber/lo v1.38.1
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
 
