@@ -1,13 +1,15 @@
 package manupay_client
 
 type ManuPayClient struct {
+	Host          string //请求域名(https://www.youdomian.com),不需要在最后添加/
 	MchNo         string //商户号
 	PrivateSecret string //私钥
 }
 
 // 实例化请求端
-func NewManuPayClient(mchNo string, privateSecret string) *ManuPayClient {
+func NewManuPayClient(host string, mchNo string, privateSecret string) *ManuPayClient {
 	var client ManuPayClient
+	client.Host = host
 	client.MchNo = mchNo
 	client.PrivateSecret = privateSecret
 	return &client

@@ -10,7 +10,8 @@ import (
 	"strings"
 )
 
-func GenSign(params map[string]interface{}, privateSecret string) string {
+// 原始签名字符串,签名结果
+func GenSign(params map[string]interface{}, privateSecret string) (string, string) {
 	md5ctx := md5.New()
 	keys := make([]string, 0, len(params))
 
@@ -47,14 +48,15 @@ func GenSign(params map[string]interface{}, privateSecret string) string {
 	}
 	buf.WriteString(fmt.Sprintf("&key=%s", privateSecret))
 
-	fmt.Printf("Sign-rawSignStr = %s\n", buf.String())
-	md5ctx.Write([]byte(buf.String()))
-	return strings.ToUpper(hex.EncodeToString(md5ctx.Sum(nil)))
+	rawString := buf.String()
+
+	md5ctx.Write([]byte(rawString))
+	return rawString, strings.ToUpper(hex.EncodeToString(md5ctx.Sum(nil)))
 }
 
 // 验证签名
 func VerifySign(params map[string]interface{}, privateSecret string, sign string) bool {
 	//自己算一遍
-	selfSign := GenSign(params, privateSecret)
+	_, selfSign := GenSign(params, privateSecret)
 	return selfSign == sign
 }

@@ -19,7 +19,7 @@ func TestSign(t *testing.T) {
 		"reqTime":    "20190723141000",
 		"version":    "1.0",
 	}
-	result2 := GenSign(signMap2, "EWEFD123RGSRETYDFNGFGFGSHDFGH")
+	_, result2 := GenSign(signMap2, "EWEFD123RGSRETYDFNGFGFGSHDFGH")
 	fmt.Printf("%s\n", result2)
 }
 
@@ -57,6 +57,6 @@ func TestSign2(t *testing.T) {
 		"wayCode":    "SAIL_CASHIER",
 		//"key":XcX2XbEUGkklmv8OREpQBoE0xBA0VMNXATigyRHFCE3NC6puxX9l8RiPudJLJ6LB4lSbnikFH2mNFiiDZypmNOlDmCnrmJeFnX44giVf8vpOqiLLr4GRIb9uJG0V0KxI,
 	}
-	result2 := GenSign(signMap2, "XcX2XbEUGkklmv8OREpQBoE0xBA0VMNXATigyRHFCE3NC6puxX9l8RiPudJLJ6LB4lSbnikFH2mNFiiDZypmNOlDmCnrmJeFnX44giVf8vpOqiLLr4GRIb9uJG0V0KxI")
+	_, result2 := GenSign(signMap2, "XcX2XbEUGkklmv8OREpQBoE0xBA0VMNXATigyRHFCE3NC6puxX9l8RiPudJLJ6LB4lSbnikFH2mNFiiDZypmNOlDmCnrmJeFnX44giVf8vpOqiLLr4GRIb9uJG0V0KxI")
 	fmt.Printf("%s\n", result2)
 }

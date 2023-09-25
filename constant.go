@@ -2,7 +2,7 @@ package manupay_client
 
 const (
 	//地址
-	UNIFIEDORDER_URL = "https://pay-server-test.exlinkedev.com/pay/order/place"
+	UNIFIEDORDER_PATH = "/pay/order/place"
 )
 
 const (

@@ -26,7 +26,7 @@ func TestPlaceOrder(t *testing.T) {
 
 	//-----------------------------------
 
-	client := NewManuPayClient(MchNo, PrivateSecret)
+	client := NewManuPayClient("http://127.0.0.1:9002", MchNo, PrivateSecret)
 	isSucceed, response := client.PlaceUnifiedOrder(UnifiedOrderRequest{
 		MchOrderNo: orderId,
 		WayCode:    "SAIL_CASHIER",
@@ -45,7 +45,7 @@ func TestPlaceOrder(t *testing.T) {
 	if response.Code == 0 {
 		//验证返回的签名
 		rawParams := structs.Map(response.Data)
-		signVal := GenSign(rawParams, client.PrivateSecret)
+		_, signVal := GenSign(rawParams, client.PrivateSecret)
 		if signVal != response.Sign {
 			fmt.Printf("-----sign---err---%s\n", signVal)
 		} else {
