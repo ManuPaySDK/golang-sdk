@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/fatih/structs"
 	"testing"
+	"time"
 )
 
 // 下单
@@ -37,6 +38,7 @@ func TestPlaceOrder(t *testing.T) {
 		NotifyUrl:  "https://www.jpdb001.com/notifyUrl",
 		ReturnUrl:  "https://www.jpdb001.com/returnUrl",
 		ExtParam:   string(res),
+		ReqTime:    time.Now().UnixMilli(),
 		//可选
 		ExpiredTime: 3600,
 	})

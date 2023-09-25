@@ -17,8 +17,7 @@ func NewManuPayClient(host string, mchNo string, privateSecret string) *ManuPayC
 
 // 公共参数
 type CommonRequestInfo struct {
-	MchNo   string `json:"mchNo" structs:"mchNo"`     //商户号
-	ReqTime int64  `json:"reqTime" structs:"reqTime"` //请求接口时间,13位时间戳
+	MchNo string `json:"mchNo" structs:"mchNo"` //商户号
 	//签名值
 	Sign string `json:"sign" structs:"sign"` //签名值
 
@@ -35,6 +34,7 @@ type UnifiedOrderRequest struct {
 	NotifyUrl  string `json:"notifyUrl" structs:"notifyUrl"`   //支付结果异步回调URL
 	ReturnUrl  string `json:"returnUrl" structs:"returnUrl"`   //支付结果同步跳转通知URL
 	ExtParam   string `json:"extParam" structs:"extParam"`     //商户扩展参数json格式字符串 至少有country参数字段 ,回调时会原样返回
+	ReqTime    int64  `json:"reqTime" structs:"reqTime"`       //请求接口时间,13位时间戳(用于动态签名)
 
 	//可选参数
 	ExpiredTime int    `json:"expiredTime,omitempty" structs:"expiredTime,omitempty"` //订单失效时间,单位秒,默认2小时.订单在(创建时间+失效时间)后失效

@@ -7,7 +7,6 @@ import (
 	"github.com/parnurzeal/gorequest"
 	"github.com/samber/lo"
 	"golang.org/x/exp/maps"
-	"time"
 )
 
 // 生成账单
@@ -60,8 +59,8 @@ func (client *ManuPayClient) CalculateSign(request UnifiedOrderRequest) SignForm
 
 	//请求封装公共参数
 	commonReq := CommonRequestInfo{
-		MchNo:   client.MchNo,           //商户号
-		ReqTime: time.Now().UnixMilli(), //请求时间
+		MchNo: client.MchNo, //商户号
+		//ReqTime: time.Now().UnixMilli(), //请求时间
 	}
 
 	//计算签名
