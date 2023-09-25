@@ -32,8 +32,8 @@ func (client *ManuPayClient) PlaceUnifiedOrder(request UnifiedOrderRequest) (boo
 		return false, UnifiedOrderResponse{}
 	}
 	//--------------------------------------------------------------------
-	if request.ReqTime <= 0 {
-		request.ReqTime = 3600
+	if request.ExpiredTime <= 0 {
+		request.ExpiredTime = 3600
 	}
 
 	//计算Body
