@@ -65,6 +65,7 @@ func (client *ManuPayClient) CalculateSign(request UnifiedOrderRequest) SignForm
 		CommonRequestInfo
 		UnifiedOrderRequest
 	}
+	commonReq.Sign = signVal
 	result := UnifiedOrderRequestFinal{
 		commonReq,
 		request,
