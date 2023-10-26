@@ -3,7 +3,6 @@ package manupay_client
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/fatih/structs"
 	"testing"
 	"time"
 )
@@ -46,12 +45,15 @@ func TestPlaceOrder(t *testing.T) {
 
 	if response.Code == 0 {
 		//验证返回的签名
-		rawParams := structs.Map(response.Data)
-		_, signVal := GenSign(rawParams, client.PrivateSecret)
-		if signVal != response.Sign {
-			fmt.Printf("-----sign---err---%s\n", signVal)
-		} else {
-			fmt.Printf("-----sign---succ---%s\n", signVal)
-		}
+		/*
+			rawParams := structs.Map(response.Data)
+			_, signVal := GenSign(rawParams, client.PrivateSecret)
+			if signVal != response.Sign {
+				fmt.Printf("-----sign---err---%s\n", signVal)
+			} else {
+				fmt.Printf("-----sign---succ---%s\n", signVal)
+			}
+
+		*/
 	}
 }

@@ -45,8 +45,8 @@ type UnifiedOrderRequest struct {
 type UnifiedOrderResponse struct {
 	Code int `json:"code"  structs:"code"` //SUCCESS表示创建订单成功，EXISTS表示订单已存在
 	//可选字段
-	Msg  string           `json:"msg"  structs:"msg"`   //商户编码
-	Sign string           `json:"sign"  structs:"sign"` //对data内数据签名,如data为空则不返回
+	Msg string `json:"msg"  structs:"msg"` //商户编码
+	//Sign string           `json:"sign"  structs:"sign"` //对data内数据签名,如data为空则不返回
 	Data UnifiedOrderData `json:"data"  structs:"data"` //返回下单数据,json格式数据
 	Time string           `json:"time"  structs:"time"` //接口响应时间
 }
